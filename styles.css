@@ -75,7 +75,7 @@ body::before {
 }
 
 .container::after {
-    content: '🎰♠️ CASINO ROYAL ♠️🎰';
+    content: '♠️ CASINO ROYAL ♠️';
     position: absolute;
     bottom: 15px;
     left: 50%;
