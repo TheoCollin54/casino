@@ -2,18 +2,11 @@ const form = document.getElementById("inscription-form");
 form.addEventListener("submit", function (e) {
     e.preventDefault();
 
-    const data = {
-        name: document.getElementById("name").value,
-        firstname: document.getElementById("firstname").value,
-        number: document.getElementById("number").value
-    };
+    const formData = new FormData(form);
 
-    fetch("https://script.google.com/macros/s/AKfycbw_o1W4tGH_IytOd_TbT9c_x3yB_wDeV7bQ-w6iEnsTqWmpynYEBcU8bJos2dLui7qeDg/exec", {
+    fetch("https://script.google.com/macros/s/AKfycbynE1Fp1NcBcrVp65VpU74SZE7fnN2boCIlPsRzY-5QdICJj6jjwVsX3vcYbiUBcMJSqw/exec", {
         method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-            "Content-Type": "application/json"
-        }
+        body: new URLSearchParams(formData) // Pas de headers personnalisés = pas de préflight
     })
         .then(response => {
             if (response.ok) {
@@ -22,5 +15,9 @@ form.addEventListener("submit", function (e) {
             } else {
                 alert("Erreur lors de l’envoi.");
             }
+        })
+        .catch(error => {
+            console.error("Erreur:", error);
+            alert("Erreur réseau.");
         });
 });
