@@ -15,8 +15,9 @@ document.getElementById("inscription-form").addEventListener("submit", function 
     })
         .then(res => res.text())
         .then(result => {
-            alert("Données envoyées : " + result);
+            // alert("Données envoyées : " + result);
             this.reset();
+            window.location.href = "logged.html";
         })
         .catch(err => {
             alert("Erreur d’envoi : " + err);
