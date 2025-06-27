@@ -1,124 +1,112 @@
-/* Reset global */
+/* --- RESET GLOBAL --- */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Body avec dégradé sombre + particules scintillantes */
+/* --- COULEURS --- */
+:root {
+    --joa-violet: #802090;
+    --joa-blanc: #ffffff;
+    --joa-noir: #000000;
+    --joa-orange: #ff6b35;
+}
+
+/* --- FOND VIOLET --- */
 body {
-    font-family: 'Arial', sans-serif;
-    background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, #533483 100%);
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--joa-violet);
     min-height: 100vh;
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
     position: relative;
     overflow: hidden;
-    padding: 40px 20px;
-    min-height: 100vh;
 }
 
-/* Animation de particules scintillantes en arrière-plan */
-body::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background-image:
-        radial-gradient(2px 2px at 20px 30px, #ffd700, transparent),
-        radial-gradient(2px 2px at 40px 70px, #ff6b35, transparent),
-        radial-gradient(1px 1px at 90px 40px, #ffd700, transparent),
-        radial-gradient(1px 1px at 130px 80px, #ff6b35, transparent),
-        radial-gradient(2px 2px at 160px 30px, #ffd700, transparent);
-    background-repeat: repeat;
-    background-size: 200px 100px;
-    animation: sparkle 8s linear infinite;
-    opacity: 0.6;
-    z-index: 1;
-}
-
-@keyframes sparkle {
-    0% { transform: translateY(0px); }
-    100% { transform: translateY(-200px); }
-}
-
-/* Conteneur autour du contenu, effet verre fumé et bordure dorée */
+/* --- CONTENEUR STYLE GLASSMORPHISME NOIR --- */
 .container {
     background: rgba(0, 0, 0, 0.85);
-    backdrop-filter: blur(10px);
-    border: 2px solid #ffd700;
+    backdrop-filter: blur(8px);
     border-radius: 20px;
-    padding: 50px 10px;
-    box-shadow:
-        0 0 30px rgba(255, 215, 0, 0.3),
-        inset 0 0 20px rgba(255, 215, 0, 0.1);
-    position: relative;
-    z-index: 2;
-    width: 320px; /* adapté borne verticale */
-    max-width: 90vw;
+    padding: 50px 20px;
     text-align: center;
-    animation: glow 3s ease-in-out infinite alternate;
+    width: 320px;
+    max-width: 90vw;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+    z-index: 2;
 }
 
-@keyframes glow {
-    0% {
-        box-shadow: 0 0 30px rgba(255, 215, 0, 0.3), inset 0 0 20px rgba(255, 215, 0, 0.1);
-    }
+/* --- LOGO JOA --- */
+.container img.logo-joa {
+    width: 180px;
+    margin: 0 auto 30px;
+    display: block;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.2));
+    animation: float 4s ease-in-out infinite;
+}
+
+/* Animation flottante douce */
+@keyframes float {
+
+    0%,
     100% {
-        box-shadow: 0 0 50px rgba(255, 215, 0, 0.5), inset 0 0 30px rgba(255, 215, 0, 0.2);
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-6px);
     }
 }
 
-/* Texte titre */
-h1 {
-    color: #ffd700;
-    font-size: 26px;
+/* --- TITRE --- */
+.container h1 {
+    color: var(--joa-blanc);
+    font-size: 24px;
     margin-bottom: 30px;
-    text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
-    letter-spacing: 1.5px;
     font-weight: bold;
+    letter-spacing: 1.2px;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
 }
 
-/* Image QR code */
-img {
+/* --- QR CODE --- */
+.container img.qrcode {
+    width: 260px;
+    height: 260px;
+    border: 4px solid var(--joa-orange);
+    border-radius: 20px;
     display: block;
     margin: 0 auto;
-    width: 280px; /* taille suffisamment grande pour borne */
-    height: 280px;
-    border: 4px solid #ff6b35;
-    border-radius: 20px;
     box-shadow:
-        0 0 30px rgba(255, 107, 53, 0.7),
-        inset 0 0 15px rgba(255, 215, 0, 0.5);
+        0 0 20px rgba(255, 107, 53, 0.5),
+        inset 0 0 10px rgba(255, 255, 255, 0.1);
+    animation: pulse 4s ease-in-out infinite;
     transition: transform 0.3s ease;
     cursor: pointer;
 }
 
-/* Effet hover sur QR code (optionnel, si borne tactile) */
-img:hover {
+.container img.qrcode:hover {
     transform: scale(1.05);
     box-shadow:
-        0 0 50px rgba(255, 107, 53, 0.9),
-        inset 0 0 20px rgba(255, 215, 0, 0.7);
+        0 0 30px rgba(255, 107, 53, 0.8),
+        inset 0 0 15px rgba(255, 255, 255, 0.3);
 }
 
-/* Petite animation de glow */
-@keyframes pulse-glow {
-    0%, 100% {
+/* --- Animation pulsante --- */
+@keyframes pulse {
+
+    0%,
+    100% {
         box-shadow:
-            0 0 30px rgba(255, 107, 53, 0.7),
-            inset 0 0 15px rgba(255, 215, 0, 0.5);
+            0 0 20px rgba(255, 107, 53, 0.5),
+            inset 0 0 10px rgba(255, 255, 255, 0.1);
     }
+
     50% {
         box-shadow:
-            0 0 50px rgba(255, 107, 53, 0.9),
-            inset 0 0 25px rgba(255, 215, 0, 0.8);
+            0 0 30px rgba(255, 107, 53, 0.8),
+            inset 0 0 20px rgba(255, 255, 255, 0.3);
     }
-}
-
-/* Appliquer pulse glow en boucle au QR code */
-img {
-    animation: pulse-glow 4s ease-in-out infinite;
-
 }
