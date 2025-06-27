@@ -1,6 +1,9 @@
 document.getElementById("inscription-form").addEventListener("submit", function (e) {
     e.preventDefault();
 
+    const btn = this.querySelector(".btn");
+    btn.disabled = true; // Désactive le bouton dès le clic
+
     const data = {
         name: this.name.value,
         firstname: this.firstname.value,
@@ -21,5 +24,6 @@ document.getElementById("inscription-form").addEventListener("submit", function 
         })
         .catch(err => {
             alert("Erreur d’envoi : " + err);
+            btn.disabled = false;
         });
 });
