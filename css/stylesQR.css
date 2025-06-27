@@ -33,8 +33,9 @@ body {
     border-radius: 20px;
     padding: 50px 20px;
     text-align: center;
-    width: 320px;
-    max-width: 90vw;
+    width: 500px;
+    max-width: 500vw;
+    height: 600px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
     z-index: 2;
 }
